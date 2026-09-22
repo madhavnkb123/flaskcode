@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Science Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Data Science Analysis</h1>
+    <div class="cards">
+        <div class="card"><h3>Python Average</h3><p>{{ python_avg }}</p></div>
+        <div class="card"><h3>Data Science Average</h3><p>{{ data_science_avg }}</p></div>
+        <div class="card"><h3>Flask Average</h3><p>{{ flask_avg }}</p></div>
+    </div>
+    <h2>Top Student</h2>
+    <div class="top-student">
+        <h3>{{ top_student.name }}</h3>
+        <p>Average: {{ "%.2f"|format(top_student.average) }}</p>
+        <p>Grade: {{ top_student.grade }}</p>
+    </div>
+    <h2>Performance Graph</h2>
+    <img src="{{ url_for('static', filename='student_performance.png') }}" width="700">
+    <h2>Complete Analysis</h2>
+    <table>
+        <tr><th>Name</th><th>Python</th><th>Data Science</th><th>Flask</th><th>Average</th><th>Grade</th></tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td><td>{{ student.python }}</td><td>{{ student.data_science }}</td>
+            <td>{{ student.flask }}</td><td>{{ "%.2f"|format(student.average) }}</td><td>{{ student.grade }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br><a href="/" class="button">Back to Home</a>
+</div>
+</body>
+</html>
